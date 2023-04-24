@@ -14,7 +14,6 @@ const Product = () => {
             rating: 4,
             image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTadPbZ9bcueu6nn76guS0QLEHT1BCNe3Iomw&usqp=CAU'
         },
-
         {
             id:2,
             title: 'The Select Moscow ',
@@ -59,7 +58,8 @@ const Product = () => {
             countInStock: 2,
             rating: 3,
             image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0E9XbknuzFE6hMRrY8q_rSx53dcNxEN03uA&usqp=CAU'
-        },{
+        },
+        {
             id:5,
             title: 'Love Republic',
             description: 'Вискоза - 80%, Полиэстер - 20%',
@@ -84,7 +84,8 @@ const Product = () => {
             countInStock: 2,
             rating: 4,
             image: 'https://www.touchemodels.com/galleries/202/43/model-agency-amsterdam-touchemodels-1.jpg'
-        }, {
+        },
+        {
             id:8,
             title: 'Love Republic',
             description: 'Вискоза - 80%, Полиэстер - 20%',
@@ -169,11 +170,11 @@ const Product = () => {
     dispatch({type:"GET_PRODUCT",payload:data})
     return (
         <div className="container mx-auto w-5/6 py-16">
-<div className="basis-1/4 flex flex-wrap gap-32">
+        <div className="basis-1/4 flex flex-wrap gap-32">
     {
       data.map((el)=> <ProductCard el={el}/>)
     }
-</div>
+        </div>
         </div>
     );
 };
