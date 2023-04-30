@@ -1,7 +1,25 @@
-import React from 'react';
+import Button from "@mui/material/Button";
+import {useDispatch, useSelector} from "react-redux";
+import {useState} from "react";
+import {NavLink} from "react-router-dom";
+import {AiOutlineHeart} from "react-icons/ai";
+import {BsBasket2Fill, BsFillBasket2Fill} from "react-icons/bs";
 
 
 const ProductCard = ({el}) => {
+    const dispatch = useDispatch()
+    const [button,setButton] = useState(false)
+    const {favorite} = useSelector(state => state)
+    const heart = favorite.some(some => some.id === el.id)
+    const addBasket =  () => {
+        dispatch({type :  "ADD_TO_TASK",payload : el})
+    }
+    const btn = () => {
+        setButton(!button)
+    }
+    const favoriteAdd = () => {
+        dispatch({type:"ADD_TO_FAVORITE",payload:el})
+    }
     return (
         <div>
                 <div className="pt-10 " >
@@ -16,20 +34,22 @@ const ProductCard = ({el}) => {
                             </a>
                             <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{el.description}
                             </p>
-                            <a href="#"
-                               className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                {el.price} som
-                                <svg aria-hidden="true" className="w-4 h-4 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20"
-                                     xmlns="http://www.w3.org/2000/svg">
-                                    <path fillRule="evenodd"
-                                          d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                                          clipRule="evenodd"></path>
-                                </svg>
-                            </a>
+                            {
+                              button ? <NavLink to={"/basket"}>
+                                          <button className="text-gray-900 bg-gradient-to-r from-red-200 via-red-300 to-yellow-200 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-red-100 dark:focus:ring-red-400 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2" type={button} >
+                                              <BsBasket2Fill/>
+                                          </button>
+                                  </NavLink>
+                                 :  <button onClick={() => {
+                                     addBasket(el)
+                                     btn()
+                                  }} className="text-gray-900 bg-gradient-to-r from-red-200 via-red-300 to-yellow-200 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-red-100 dark:focus:ring-red-400 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">{el.price}</button>
+                            }
+                            <button onClick={favoriteAdd} className="mx-4 text-white bg-gradient-to-br from-purple-600 to-blue-600 ">
+                                <AiOutlineHeart className={heart ? "text-red-600" : "text-white"}/>
+                            </button>
                         </div>
                     </div>
-
-
                 </div>
         </div>
 );
