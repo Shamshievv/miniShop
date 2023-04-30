@@ -1,6 +1,6 @@
 const initialState = {
     product:[],
-    basket:[],
+    basket:JSON.parse(localStorage.getItem(`basket`)) || [],
     favorite:[]
 }
 
@@ -12,6 +12,16 @@ export const Reducer = (state = initialState,actions) => {
             const foundBasket = state.basket.find(el => el.id === actions.payload.id)
             if (foundBasket){
                 return {...state,basket: state.basket.map((el)=> el.id === foundBasket.id ? {...el,quantity:el.quantity + 1} : 1)}
+            }
+            else{
+                return {...state,basket: [...state.basket,{...actions.payload,quantity: 1}]}
+            }
+            case "MINUS_QUANTITY":
+            const minusQuantity = state.basket.find(el => el.id === actions.payload.id)
+            if (minusQuantity){
+
+                return {...state,basket: state.basket.map((el)=> el.id === minusQuantity.id ? {...el,quantity:el.quantity - 1} : 1)}
+
             }
             else{
                 return {...state,basket: [...state.basket,{...actions.payload,quantity: 1}]}

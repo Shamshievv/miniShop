@@ -11,7 +11,11 @@ const ProductCard = ({el}) => {
     const [button,setButton] = useState(false)
     const {favorite} = useSelector(state => state)
     const heart = favorite.some(some => some.id === el.id)
+    const {basket} = useSelector(s => s)
+
     const addBasket =  () => {
+        let baskets =  [...basket,{...el,quantity:1}]
+        localStorage.setItem(`basket`,JSON.stringify(baskets))
         dispatch({type :  "ADD_TO_TASK",payload : el})
     }
     const btn = () => {
@@ -22,6 +26,7 @@ const ProductCard = ({el}) => {
     }
     return (
         <div>
+
                 <div className="pt-10 " >
                     <div
                         className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">

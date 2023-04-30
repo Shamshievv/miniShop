@@ -27,6 +27,9 @@ const Basket = () => {
                             Price
                         </th>
                         <th scope="col" className="px-6 py-3">
+                            quantity
+                        </th>
+                        <th scope="col" className="px-6 py-3">
                             Action
                         </th>
                     </tr>

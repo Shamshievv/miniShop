@@ -3,7 +3,12 @@ import {useSelector} from "react-redux";
 import ProductCard from "../Product/ProductCard";
 
 const Favorite = () => {
+
     const {favorite} = useSelector(state => state)
+    const {basket} = useSelector(s => s)
+    let baskets = [...basket,{...favorite,quantity:1}]
+    localStorage.setItem(`basket`,JSON.stringify(baskets))
+
     return (
         <div className="container mx-auto w-5/6 py-16">
             <div className="basis-1/4 flex flex-wrap gap-32"></div>
