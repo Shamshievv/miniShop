@@ -6,7 +6,7 @@ import {useSelector} from "react-redux";
 import BasketTables from "./BasketTables";
 
 const Basket = () => {
-    const {basket} = useSelector(state => state)
+    const {basket} = useSelector(state => state.basket)
     return (
         <div style={{padding:"5% 0"}}>
 

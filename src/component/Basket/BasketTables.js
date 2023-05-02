@@ -1,13 +1,13 @@
-import React from 'react';
-import Basket from "./index";
+import React, {useState} from 'react';
 import {RiDeleteBin5Line} from "react-icons/ri";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {AiOutlineDelete} from "react-icons/ai";
-
 
 
 const BasketTables = ({el}) => {
     const dispatch = useDispatch()
+    const [active,setActive] = useState("")
+
 
     const deleteProduct = () => {
         dispatch({type:"DELETE_PRODUCT",payload:el})
@@ -18,6 +18,7 @@ const BasketTables = ({el}) => {
     const minusQuantity = () => {
         dispatch({type:"MINUS_QUANTITY",payload:el})
     }
+
     return (
 
                 <tr className="bg-blue-950 px-4 py-4">
@@ -34,10 +35,11 @@ const BasketTables = ({el}) => {
                         {el.price}
                     </th>
                     <th scope="col" className=" align-middle px-6 py-3">
-                        <span onClick={minusQuantity} style={{cursor:"pointer",fontSize:"30px",color:"yellow"}}>-</span>
+                        <span onClick={minusQuantity} style={{cursor:"pointer",fontSize:"25px",color:"yellow"}}>-</span>
 
-                        <span style={{fontSize:"35px",color:"aqua"}}>  {el.quantity}</span>
-                        <span onClick={addQuantity} style={{cursor:"pointer",fontSize:"30px",color:"yellow"}}>+</span>
+                        <span style={{fontSize:"20px",color:"aqua"}}>  {el.quantity}</span>
+
+                        <span onClick={addQuantity} style={{cursor:"pointer",fontSize:"25px",color:"yellow"}}>+</span>
                     </th>
                     <th>
                         <button onClick={deleteProduct}>

@@ -8,7 +8,7 @@ import Footer from "./component/Footer";
 import Favorite from "./component/Favorite";
 function App() {
   return (
-    <div className="App">
+    < div className="App">
     < Header />
       < Routes >
         < Route path={"/"} element={< Home /> }/>
@@ -17,7 +17,7 @@ function App() {
         < Route path={"/favorite"} element={< Favorite /> }/>
       </ Routes >
       < Footer />
-    </div>
+    </ div >
   );
 }
 export default App;

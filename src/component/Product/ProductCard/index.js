@@ -1,32 +1,39 @@
-import Button from "@mui/material/Button";
 import {useDispatch, useSelector} from "react-redux";
 import {useState} from "react";
 import {NavLink} from "react-router-dom";
 import {AiOutlineHeart} from "react-icons/ai";
-import {BsBasket2Fill, BsFillBasket2Fill} from "react-icons/bs";
+import {BsBasket2Fill,} from "react-icons/bs";
 
 
 const ProductCard = ({el}) => {
+
     const dispatch = useDispatch()
     const [button,setButton] = useState(false)
-    const {favorite} = useSelector(state => state)
+    const {favorite} = useSelector(state => state.favorite)
     const heart = favorite.some(some => some.id === el.id)
-    const {basket} = useSelector(s => s)
+    const {basket} = useSelector(s => s.basket)
 
     const addBasket =  () => {
         let baskets =  [...basket,{...el,quantity:1}]
         localStorage.setItem(`basket`,JSON.stringify(baskets))
         dispatch({type :  "ADD_TO_TASK",payload : el})
     }
+
+
+
+
+
     const btn = () => {
         setButton(!button)
     }
     const favoriteAdd = () => {
+        let favorites = [...favorite,{...el,quantity:1}]
+        localStorage.setItem(`favorite`,JSON.stringify(favorites))
         dispatch({type:"ADD_TO_FAVORITE",payload:el})
     }
+
     return (
         <div>
-
                 <div className="pt-10 " >
                     <div
                         className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
